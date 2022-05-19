@@ -22,11 +22,12 @@ export const loginUser = (userObj) => {
 };
 
 export const signUpUser = (userObj) => {
+  console.log(userObj)
   return (dispatch) => {
     axios
       .post("http://127.0.0.1:8000/api/register", userObj)
       .then((response) => {
-        localStorage.setItem("token", response.data.success.token);
+        localStorage.setItem("tokenUp", response.data.success.token);
         dispatch({
           type: "SIGNUP_SUCCESS",
           payload: response.data.success.token,

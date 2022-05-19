@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
-import { loginUser } from "../../store/actions/login.action";
+import { loginUser, signUpUser } from "../../store/actions/login.action";
 import "../Login/Login.css";
 
 export class SignUp extends Component {
@@ -19,7 +19,7 @@ export class SignUp extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.loginUser(this.state);
+    this.props.signUpUser(this.state);
 
     this.setState({
       name: "",
@@ -29,15 +29,15 @@ export class SignUp extends Component {
     console.log(this.state);
   };
   render() {
-    const { authError, token } = this.props;
-    if (token) return <Navigate to='/' />;
+    const { signinError, tokenUp } = this.props;
+    if (tokenUp) return <Navigate to='/login' />;
     return (
       <div class='entry'>
         <div class='entry__wrapper'>
           <div class='h2 entry__title text-center font-bold py-2 px-4'>Sign Up</div>
-          {authError ? (
+          {signinError ? (
             <div class='entry__note text-white py-2 px-2 rounded-md bg-red-500 !my-2'>
-              {authError}
+              {signinError}
             </div>
           ) : null}
 
@@ -70,23 +70,13 @@ export class SignUp extends Component {
               value={this.state.password}
             />
 
-            <input
-              class='field__input'
-              type='password'
-              name='c_password'
-              placeholder='Confirm Password'
-              required
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
-
             <button
               class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded entry__button'
               type='submit'
             >
               Sign Up
             </button>
-            <p class="message font-bold text-color font-bold py-2 px-4">Already have an account?<Link to='/login'> Log In</Link></p>
+            <p className="message font-bold text-color font-bold py-2 px-4">Already have an account?<Link to='/login'> Log In</Link></p>
           </form>
         </div>
       </div>
@@ -95,13 +85,13 @@ export class SignUp extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    authError: state.userReducer.authError,
-    token: state.userReducer.token,
+    signinError: state.userReducer.signinError,
+    tokenUp: state.userReducer.tokenUp,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: (userObj) => dispatch(loginUser(userObj)),
+    signUpUser: (userObj) => dispatch(signUpUser(userObj)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

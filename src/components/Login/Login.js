@@ -63,7 +63,7 @@ class NewLogin extends Component {
               class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded entry__button'
               type='submit'
             >
-              Sign in
+              Sign In
             </button>
             <p class="message font-bold text-color font-bold py-2 px-4">Not registered?<Link to='/sign-up'> Create an account</Link></p>
           </form>
