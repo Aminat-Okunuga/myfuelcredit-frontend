@@ -8,7 +8,8 @@ const Home = (props) => {
   if (!token) return <Navigate to='/login' />;
   return (
     <div>
-      <div>Welcome Home!</div> <div onClick={props.signOut}>Sign Out</div>
+      <div>Welcome Home!</div> 
+      <div onClick={props.signOut}>Sign Out</div>
     </div>
   );
 };
