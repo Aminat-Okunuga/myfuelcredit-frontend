@@ -1,9 +1,10 @@
 import axios from "axios";
 
 export const loginUser = (userObj) => {
+  // const appUrl = "https://myfuelcredit-api.herokuapp.com/api/login"
   return (dispatch) => {
     axios
-      .post("http://127.0.0.1:8000/api/login", userObj)
+      .post("https://myfuelcredit-api.herokuapp.com/api/login", userObj)
       .then((response) => {
         localStorage.setItem("token", response.data.success.token);
         dispatch({
@@ -25,7 +26,7 @@ export const signUpUser = (userObj) => {
   console.log(userObj)
   return (dispatch) => {
     axios
-      .post("http://127.0.0.1:8000/api/register", userObj)
+      .post("https://myfuelcredit-api.herokuapp.com/api/register", userObj)
       .then((response) => {
         localStorage.setItem("tokenUp", response.data.success.token);
         dispatch({
